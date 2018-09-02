@@ -96,46 +96,49 @@ end
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
 
-  index = 0
+  i = 0
   mid = (length - 1)/ 2
 
-  while index < (length - 1)
 
-    if value == a[mid]
-      return a[mid]
-    end
-    if value < a[mid]
+
+  while i < (length - 1)
+    if value_to_find > array[length - 1]
+      return false
+    elsif value_to_find < array[i]
+      return false
+    elsif value_to_find == array[mid]
+      return true #array[mid]
+    elsif value_to_find < array[mid]
       mid = mid - 1
-    else value > a[mid]
+    elsif value_to_find > array[mid]
       mid = mid + 1
     end
     i = i + 1
-    return "value does not exit"
-    # raise NotImplementedError
   end
 
-  # Helper method provided to sort the array in ascending order
-  # Implements selection sort
-  # Time complexity = O(n^2) since to find the correct value to be in a given location,
-  # all the remaining elements are visited. This is done for each location.
-  # (nested loop of size n each)
-  # Space complexity = O(1) since the additional storage needed does not depend
-  #                    on input array size.
-  def sort(array, length)
-    length.times do |index| # outer loop - n elements
-      min_index = index # assume index is where the next minimally value is
-      temp_index = index+1 # compare with values at index+1 to length-1
-      while temp_index < length # inner loop - n-1 elements
-        if array[temp_index] < array[min_index] # found a new minimum, update min_index
-          min_index = temp_index
-        end
-        temp_index += 1 # move to next index
+end
+# Helper method provided to sort the array in ascending order
+# Implements selection sort
+# Time complexity = O(n^2) since to find the correct value to be in a given location,
+# all the remaining elements are visited. This is done for each location.
+# (nested loop of size n each)
+# Space complexity = O(1) since the additional storage needed does not depend
+#                    on input array size.
+def sort(array, length)
+  length.times do |index| # outer loop - n elements
+    min_index = index # assume index is where the next minimally value is
+    temp_index = index+1 # compare with values at index+1 to length-1
+    while temp_index < length # inner loop - n-1 elements
+      if array[temp_index] < array[min_index] # found a new minimum, update min_index
+        min_index = temp_index
       end
-      if min_index != index # next minimum value is not at current index, swap
-        temp = array[min_index]
-        array[min_index] = array[index]
-        array[index] = temp
-      end
+      temp_index += 1 # move to next index
+    end
+    if min_index != index # next minimum value is not at current index, swap
+      temp = array[min_index]
+      array[min_index] = array[index]
+      array[index] = temp
     end
   end
-  ## --- END OF METHODS ---
+end
+## --- END OF METHODS ---
