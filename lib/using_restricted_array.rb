@@ -8,7 +8,9 @@ require 'pry'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
+
   length_array = 0
+
   while array[length_array] != nil
     length_array = length_array + 1
   end
@@ -18,16 +20,15 @@ end
 
 # Prints each integer values in the array
 def print_array(array)
+
   length_array = 0
 
   while array[length_array] != nil
     length_array = length_array + 1
   end
-  length_array
-
   index = 0
   length_array.times do
-    print  "#{array[index]} "
+    print "#{array[index]} "
     index = index + 1
   end
   # raise NotImplementedError
@@ -52,13 +53,45 @@ end
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
+
+  index1 = 0
+  index2 = 1
+
+  length_array = length - 1
+  largest = array[0]
+
+  while index1 < length_array
+    if largest > array[index2]
+    elsif largest < array[index2]
+      largest = array[index2]
+    end
+    index1 = index1 + 1
+    index2 = index2 + 1
+  end
+  return largest
   # raise NotImplementedError
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  # raise NotImplementedError
+
+  index1 = 0
+  index2 = 1
+
+  length_array = length - 1
+  smallest = array[0]
+
+  while index1 < length_array
+    if smallest < array[index2]
+    elsif smallest > array[index2]
+      smallest = array[index2]
+    end
+    index1 = index1 + 1
+    index2 = index2 + 1
+    # binding.pry
+  end
+    return smallest
 end
 
 # Reverses the values in the integer array in place
@@ -98,8 +131,6 @@ def binary_search(array, length, value_to_find)
 
   i = 0
   mid = (length - 1)/ 2
-
-
 
   while i < (length - 1)
     if value_to_find > array[length - 1]
